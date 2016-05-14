@@ -62,17 +62,6 @@ public class Main extends PApplet{
     public void draw() {
         setGradient(900, 950, 200, 10, c1, c2, Y_AXIS);
     }
-
-//    public void createEarthquakeList() {
-//        try {
-//            JSONParser newJson = new JSONParser();
-//            earthquakes = newJson.getJsonFromUrl("http://apis.is/earthquake/is");
-//            drawEarthquakes2(earthquakes);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        
-//    }
     
     public void drawEarthquakes() {
         strokeWeight((float) 1.5);
@@ -84,26 +73,7 @@ public class Main extends PApplet{
             println("Latitude: " + EQ.getLatitude() + ", Longitude: " + EQ.getLongitude() + ", Depth: " + EQ.getDepth() + ", Size: " + EQ.getSize());
         }
     }
-    
-    public void drawEarthquakes2(JsonObject earthquakes) {
-        values = earthquakes.getAsJsonArray("results");
-        for (int i = 0; i < values.size(); i++) {
-            JsonObject earthquake = values.get(i).getAsJsonObject(); 
 
-            Float latitude = earthquake.get("latitude").getAsFloat();
-            Float longitude = earthquake.get("longitude").getAsFloat();
-            Float depth = earthquake.get("depth").getAsFloat();
-            Float size = earthquake.get("size").getAsFloat();
-
-            int c = color(255, (255 - ((size+1)*85)), 0);
-            strokeWeight((float) 1.5);
-            fill(c);
-            ellipse(((27+longitude)*74),(((68-latitude)*180)), (depth * 2), (depth * 2));
-            
-            println("Latitude: " + latitude + ", Longitude: " + longitude + ", Depth: " + depth + ", Size: " + size);
-        }
-    }
-    
     public void drawLegend() {
         stroke(4);
         c1 = color(255, 255, 0);

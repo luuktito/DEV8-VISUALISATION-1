@@ -17,9 +17,8 @@ import java.util.logging.Logger;
  * @author Luuk
  */
 public class JSONtoEarthquake {
-    private JSONParser newJson = new JSONParser();
-    private JsonObject earthquakes = getEarthquakeJson();
-    private ArrayList<Earthquake> earthquakeList;
+    private final JSONParser newJson = new JSONParser();
+    private final JsonObject earthquakes = getEarthquakeJson();
 
     public ArrayList<Earthquake> JSONtoEarthquake() throws IOException {
         return createEarthquakeArrayList(earthquakes);
