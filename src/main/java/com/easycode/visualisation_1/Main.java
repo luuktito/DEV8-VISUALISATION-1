@@ -8,6 +8,7 @@ package com.easycode.visualisation_1;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,12 +28,6 @@ public class Main extends PApplet{
     private static final JSONtoEarthquake newJsontoEarthquake = new JSONtoEarthquake();
     JsonObject earthquakes;
     JsonArray values;
-    int c1, c2;
-    int Y_AXIS = 1;
-    int X_AXIS = 2;
-    int from = color (232, 255, 62);
-    int to = color (255, 62, 143);
-    int j=0;
 
     public static void main(String[] args) {
         try {
@@ -60,7 +55,7 @@ public class Main extends PApplet{
 
     @Override
     public void draw() {
-        setGradient(900, 950, 200, 10, c1, c2, Y_AXIS);
+        setGradient(900, 950, 200, 10);
     }
     
     public void drawEarthquakes() {
@@ -76,8 +71,6 @@ public class Main extends PApplet{
 
     public void drawLegend() {
         stroke(4);
-        c1 = color(255, 255, 0);
-        c2 = color(255, 0, 0);
         textAlign(CENTER);
         textSize(14);
         fill(1);
@@ -85,8 +78,7 @@ public class Main extends PApplet{
         textSize(12);
         text("-1              0               1               2", 1000, 975);
         textSize(20);
-
-        text("Earthquakes Iceland from May 9th 2015 to May 11th 2015", 600, 50);
+        text("Earthquakes Iceland from " + earthquakeList.get(earthquakeList.size() -1).getTimestamp()+ " to " + earthquakeList.get(0).getTimestamp(), 600, 50);
         textSize(14);
         text("From vedur.is", 600, 80);
 
@@ -104,10 +96,10 @@ public class Main extends PApplet{
         text("Depth in KM", 791, 940);
     }
     
-    public void setGradient(int x, int y, float w, float h, int c1, int c2, int axis ) {
+    public void setGradient(int x, int y, float w, float h) {
         for (int i = x; i <= x+w; i+=1) {
           float inter = map(i, x, x+w, 0, 1);
-          int c = lerpColor(c1, c2, inter);
+          int c = lerpColor(color(255, 255, 0), color(255, 0, 0), inter);
           stroke(c);
           line(i, y, i, y+h);
         }

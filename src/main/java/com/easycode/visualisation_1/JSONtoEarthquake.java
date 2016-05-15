@@ -8,6 +8,7 @@ package com.easycode.visualisation_1;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,8 +48,12 @@ public class JSONtoEarthquake {
             Float longitude = earthquake.get("longitude").getAsFloat();
             Float depth = earthquake.get("depth").getAsFloat();
             Float size = earthquake.get("size").getAsFloat();
+            String str_timestamp = earthquake.get("timestamp").getAsString();
+            str_timestamp = str_timestamp.replace('T', ' ');
+            str_timestamp = str_timestamp.substring(0, str_timestamp.length() - 1);
+            Timestamp timeStampDate = Utilities.convertStringToTimestamp(str_timestamp);
 
-            Earthquake EQ = new Earthquake(latitude, longitude, depth, size);
+            Earthquake EQ = new Earthquake(latitude, longitude, depth, size, timeStampDate);
             returnList.add(EQ);
         }
         return returnList;

@@ -5,6 +5,8 @@
  */
 package com.easycode.visualisation_1;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Luuk
@@ -15,12 +17,14 @@ public class Earthquake {
     float longitude;
     float depth;
     float size;
+    Timestamp timestamp;
 
-    public Earthquake(float latitude, float longitude, float depth, float size) {
+    public Earthquake(float latitude, float longitude, float depth, float size, Timestamp timestamp) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.depth = depth;
         this.size = size;
+        this.timestamp = timestamp;
     }
 
     public float getLatitude() {
@@ -54,4 +58,13 @@ public class Earthquake {
     public void setSize(float size) {
         this.size = size;
     }
+    
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
 }
