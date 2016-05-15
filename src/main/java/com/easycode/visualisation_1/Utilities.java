@@ -18,6 +18,8 @@ import java.util.Date;
 public class Utilities {
         public static Timestamp convertStringToTimestamp(String str_date) {
         try {
+            str_date = str_date.replace('T', ' ');
+            str_date = str_date.substring(0, str_date.length() - 1);
             DateFormat formatter;
             formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
             Date date = formatter.parse(str_date);

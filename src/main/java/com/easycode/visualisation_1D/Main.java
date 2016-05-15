@@ -5,6 +5,10 @@
  */
 package com.easycode.visualisation_1D;
 
+import com.easycode.visualisation_1D.CoordinateTypes.CoordinateGeneric;
+import com.easycode.visualisation_1D.CoordinateTypes.Decimal;
+import com.easycode.visualisation_1D.CoordinateTypes.Rijksdriehoek;
+import com.easycode.visualisation_1D.CoordinateTypes.WGS;
 import java.util.Scanner;
 
 /**
@@ -16,10 +20,14 @@ public class Main {
     static String inputConvertFrom, inputConvertTo;
     
     public static void main(String[] args) {
-        System.out.println("Available coordinate types: Rijksdriehoek (RDH), Geographical (GEO), Decimal (DEC)");
-        askUserInput("from");
-        askUserInput("to");
-        System.out.println("From: " + inputConvertFrom + ", To: " + inputConvertTo);
+        System.out.println("Available coordinate types: (RDH), (GEO), (DEC)");
+        System.out.println("RDH Example: 199735, 307365");
+        System.out.println("GEO Example: 50 45 16, 6 1 16 or 38 53 23, -77 00 32");
+        System.out.println("DEC Example: 50.75450, 6.02110");
+
+        CoordinateGeneric<WGS> WGSCoordinates = new CoordinateGeneric<>(new WGS(38,53,24), new WGS(77, 00, 32));
+        CoordinateGeneric<Decimal> DECCoordinates = new CoordinateGeneric<>(new Decimal(50.75450), new Decimal(6.02110));
+        CoordinateGeneric<Rijksdriehoek> RDHCoordinates = new CoordinateGeneric<>(new Rijksdriehoek(199735), new Rijksdriehoek(307365));
     }
     
     public static void askUserInput(String type) {
@@ -42,11 +50,8 @@ public class Main {
     }
     
     public static boolean checkInputFromUser(String input) {
-        return (input.equalsIgnoreCase("Rijksdriehoek"))
-                || (input.equalsIgnoreCase("RDH"))
-                || (input.equalsIgnoreCase("Geographical"))
-                || (input.equalsIgnoreCase("GEO"))
-                || (input.equalsIgnoreCase("Decimal"))
-                || (input.equalsIgnoreCase("DEC"));
+        return ((input.equalsIgnoreCase("RDH"))
+               || (input.equalsIgnoreCase("GEO"))
+               || (input.equalsIgnoreCase("DEC")));
     }
 }

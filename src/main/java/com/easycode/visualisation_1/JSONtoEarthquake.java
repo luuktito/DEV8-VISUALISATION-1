@@ -49,8 +49,7 @@ public class JSONtoEarthquake {
             Float depth = earthquake.get("depth").getAsFloat();
             Float size = earthquake.get("size").getAsFloat();
             String str_timestamp = earthquake.get("timestamp").getAsString();
-            str_timestamp = str_timestamp.replace('T', ' ');
-            str_timestamp = str_timestamp.substring(0, str_timestamp.length() - 1);
+
             Timestamp timeStampDate = Utilities.convertStringToTimestamp(str_timestamp);
 
             Earthquake EQ = new Earthquake(latitude, longitude, depth, size, timeStampDate);
