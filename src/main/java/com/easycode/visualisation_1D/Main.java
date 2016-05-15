@@ -17,16 +17,6 @@ import java.util.Scanner;
  */
 public class Main {
     static Scanner reader = new Scanner(System.in);
-    static String inputConvertFromValue;
-    static double inputConvertFromDouble[] = new double[3];
-    static double inputConvertToDouble[] = new double[3];
-    static CoordinateGeneric<Rijksdriehoek> RDHCoordinates = new CoordinateGeneric<>();
-    static CoordinateGeneric<WGS> WGSCoordinates = new CoordinateGeneric<>();
-    static CoordinateGeneric<Decimal> DECCoordinates = new CoordinateGeneric<>();
-    static CoordinateGeneric<WGS> WGSResults = new CoordinateGeneric<>();
-    static CoordinateGeneric<Decimal> DECResults = new CoordinateGeneric<>();
-    static CoordinateGeneric<Rijksdriehoek> RDHResults = new CoordinateGeneric<>();
-    
      
     public static void main(String[] args) {
         System.out.println("Available coordinate types: (RDH), (GEO), (DEC)");
@@ -72,6 +62,16 @@ public class Main {
     }
     
     public static void convertUserInput(int inputConvertFrom, int inputConvertTo) {
+            CoordinateGeneric<Rijksdriehoek> RDHCoordinates = new CoordinateGeneric<>();
+            CoordinateGeneric<WGS> WGSCoordinates = new CoordinateGeneric<>();
+            CoordinateGeneric<Decimal> DECCoordinates = new CoordinateGeneric<>();
+            CoordinateGeneric<WGS> WGSResults = new CoordinateGeneric<>();
+            CoordinateGeneric<Decimal> DECResults = new CoordinateGeneric<>();
+            CoordinateGeneric<Rijksdriehoek> RDHResults = new CoordinateGeneric<>();
+            double inputConvertFromDouble[] = new double[3];
+            double inputConvertToDouble[] = new double[3];
+            String inputConvertFromValue;
+        
             System.out.println("Please type in the Coordinates you want to convert:");
             inputConvertFromValue = reader.nextLine();
             String[] newXString = inputConvertFromValue.substring(0, inputConvertFromValue.indexOf(',')).split(" ");
@@ -110,7 +110,6 @@ public class Main {
                 case 31 :
                     DECCoordinates = new CoordinateGeneric<>(new Decimal(inputConvertFromDouble[0]), new Decimal(inputConvertToDouble[0]));
                     RDHResults = ConvertCoordinates.DECtoRDH(DECCoordinates);
-
                     break;
                 case 32 :
                     DECCoordinates = new CoordinateGeneric<>(new Decimal(inputConvertFromDouble[0]), new Decimal(inputConvertToDouble[0]));
