@@ -62,77 +62,77 @@ public class Main {
     }
     
     public static void convertUserInput(int inputConvertFrom, int inputConvertTo) {
-            CoordinateGeneric<Rijksdriehoek> RDHCoordinates = new CoordinateGeneric<>();
-            CoordinateGeneric<WGS> WGSCoordinates = new CoordinateGeneric<>();
-            CoordinateGeneric<Decimal> DECCoordinates = new CoordinateGeneric<>();
-            CoordinateGeneric<WGS> WGSResults = new CoordinateGeneric<>();
-            CoordinateGeneric<Decimal> DECResults = new CoordinateGeneric<>();
-            CoordinateGeneric<Rijksdriehoek> RDHResults = new CoordinateGeneric<>();
-            double inputConvertFromDouble[] = new double[3];
-            double inputConvertToDouble[] = new double[3];
-            String inputConvertFromValue;
-        
-            System.out.println("Please type in the Coordinates you want to convert:");
-            inputConvertFromValue = reader.nextLine();
-            String[] newXString = inputConvertFromValue.substring(0, inputConvertFromValue.indexOf(',')).split(" ");
-            String[] newYString = inputConvertFromValue.substring(inputConvertFromValue.indexOf(',') + 1).split(" ");
-            
-            for (int i = 0; i < newXString.length; i++) {
-                inputConvertFromDouble[i] = Double.parseDouble(newXString[i]);
-                inputConvertToDouble[i] = Double.parseDouble(newYString[i+1]);
-            }
-                        
-            switch((inputConvertFrom*10)+inputConvertTo) {
-                case 11 :
-                    RDHCoordinates = new CoordinateGeneric<>(new Rijksdriehoek(inputConvertFromDouble[0]), new Rijksdriehoek(inputConvertToDouble[0]));
-                    RDHResults = ConvertCoordinates.RDHtoRDH(RDHCoordinates);
-                    break;
-                case 12 :
-                    RDHCoordinates = new CoordinateGeneric<>(new Rijksdriehoek(inputConvertFromDouble[0]), new Rijksdriehoek(inputConvertToDouble[0]));
-                    WGSResults = ConvertCoordinates.RDHtoWGS(RDHCoordinates);
-                    break;
-                case 13 :
-                    RDHCoordinates = new CoordinateGeneric<>(new Rijksdriehoek(inputConvertFromDouble[0]), new Rijksdriehoek(inputConvertToDouble[0]));
-                    DECResults = ConvertCoordinates.RDHtoDEC(RDHCoordinates);
-                    break;
-                case 21 :
-                    WGSCoordinates = new CoordinateGeneric<>(new WGS(inputConvertFromDouble[0],inputConvertFromDouble[1],inputConvertFromDouble[2]), new WGS(inputConvertToDouble[0],inputConvertToDouble[1],inputConvertToDouble[2]));
-                    RDHResults = ConvertCoordinates.WGStoRDH(WGSCoordinates);
-                    break;
-                case 22 :
-                    WGSCoordinates = new CoordinateGeneric<>(new WGS(inputConvertFromDouble[0],inputConvertFromDouble[1],inputConvertFromDouble[2]), new WGS(inputConvertToDouble[0],inputConvertToDouble[1],inputConvertToDouble[2]));
-                    WGSResults = ConvertCoordinates.WGStoWGS(WGSCoordinates);
-                    break;
-                case 23 :
-                    WGSCoordinates = new CoordinateGeneric<>(new WGS(inputConvertFromDouble[0],inputConvertFromDouble[1],inputConvertFromDouble[2]), new WGS(inputConvertToDouble[0],inputConvertToDouble[1],inputConvertToDouble[2]));
-                    DECResults = ConvertCoordinates.WGStoDEC(WGSCoordinates);
-                    break;
-                case 31 :
-                    DECCoordinates = new CoordinateGeneric<>(new Decimal(inputConvertFromDouble[0]), new Decimal(inputConvertToDouble[0]));
-                    RDHResults = ConvertCoordinates.DECtoRDH(DECCoordinates);
-                    break;
-                case 32 :
-                    DECCoordinates = new CoordinateGeneric<>(new Decimal(inputConvertFromDouble[0]), new Decimal(inputConvertToDouble[0]));
-                    WGSResults = ConvertCoordinates.DECtoWGS(DECCoordinates);
-                    break;
-                case 33 :
-                    DECCoordinates = new CoordinateGeneric<>(new Decimal(inputConvertFromDouble[0]), new Decimal(inputConvertToDouble[0]));
-                    DECResults = ConvertCoordinates.DECtoDEC(DECCoordinates);
-                    break;
-                default:
-            }
-            
-            if (inputConvertTo == 1) {
-                System.out.println("new X: " + RDHResults.getxCoordinate().getCoordinate());
-                System.out.println("new Y: " + RDHResults.getyCoordinate().getCoordinate());
-            }
-            else if (inputConvertTo == 2) {
-                System.out.println("new X: " + WGSResults.getxCoordinate().toString());
-                System.out.println("new Y: " + WGSResults.getyCoordinate().toString());
-            }
-            else { 
-                System.out.println("new X: " + DECResults.getxCoordinate().getCoordinate());
-                System.out.println("new Y: " + DECResults.getyCoordinate().getCoordinate());
-            }
+        CoordinateGeneric<Rijksdriehoek> RDHCoordinates = new CoordinateGeneric<>();
+        CoordinateGeneric<WGS> WGSCoordinates = new CoordinateGeneric<>();
+        CoordinateGeneric<Decimal> DECCoordinates = new CoordinateGeneric<>();
+        CoordinateGeneric<WGS> WGSResults = new CoordinateGeneric<>();
+        CoordinateGeneric<Decimal> DECResults = new CoordinateGeneric<>();
+        CoordinateGeneric<Rijksdriehoek> RDHResults = new CoordinateGeneric<>();
+        double inputConvertFromDouble[] = new double[3];
+        double inputConvertToDouble[] = new double[3];
+        String inputConvertFromValue;
+
+        System.out.println("Please type in the Coordinates you want to convert:");
+        inputConvertFromValue = reader.nextLine();
+        String[] newXString = inputConvertFromValue.substring(0, inputConvertFromValue.indexOf(',')).split(" ");
+        String[] newYString = inputConvertFromValue.substring(inputConvertFromValue.indexOf(',') + 1).split(" ");
+
+        for (int i = 0; i < newXString.length; i++) {
+            inputConvertFromDouble[i] = Double.parseDouble(newXString[i]);
+            inputConvertToDouble[i] = Double.parseDouble(newYString[i+1]);
+        }
+
+        switch((inputConvertFrom*10)+inputConvertTo) {
+            case 11 :
+                RDHCoordinates = new CoordinateGeneric<>(new Rijksdriehoek(inputConvertFromDouble[0]), new Rijksdriehoek(inputConvertToDouble[0]));
+                RDHResults = ConvertCoordinates.RDHtoRDH(RDHCoordinates);
+                break;
+            case 12 :
+                RDHCoordinates = new CoordinateGeneric<>(new Rijksdriehoek(inputConvertFromDouble[0]), new Rijksdriehoek(inputConvertToDouble[0]));
+                WGSResults = ConvertCoordinates.RDHtoWGS(RDHCoordinates);
+                break;
+            case 13 :
+                RDHCoordinates = new CoordinateGeneric<>(new Rijksdriehoek(inputConvertFromDouble[0]), new Rijksdriehoek(inputConvertToDouble[0]));
+                DECResults = ConvertCoordinates.RDHtoDEC(RDHCoordinates);
+                break;
+            case 21 :
+                WGSCoordinates = new CoordinateGeneric<>(new WGS(inputConvertFromDouble[0],inputConvertFromDouble[1],inputConvertFromDouble[2]), new WGS(inputConvertToDouble[0],inputConvertToDouble[1],inputConvertToDouble[2]));
+                RDHResults = ConvertCoordinates.WGStoRDH(WGSCoordinates);
+                break;
+            case 22 :
+                WGSCoordinates = new CoordinateGeneric<>(new WGS(inputConvertFromDouble[0],inputConvertFromDouble[1],inputConvertFromDouble[2]), new WGS(inputConvertToDouble[0],inputConvertToDouble[1],inputConvertToDouble[2]));
+                WGSResults = ConvertCoordinates.WGStoWGS(WGSCoordinates);
+                break;
+            case 23 :
+                WGSCoordinates = new CoordinateGeneric<>(new WGS(inputConvertFromDouble[0],inputConvertFromDouble[1],inputConvertFromDouble[2]), new WGS(inputConvertToDouble[0],inputConvertToDouble[1],inputConvertToDouble[2]));
+                DECResults = ConvertCoordinates.WGStoDEC(WGSCoordinates);
+                break;
+            case 31 :
+                DECCoordinates = new CoordinateGeneric<>(new Decimal(inputConvertFromDouble[0]), new Decimal(inputConvertToDouble[0]));
+                RDHResults = ConvertCoordinates.DECtoRDH(DECCoordinates);
+                break;
+            case 32 :
+                DECCoordinates = new CoordinateGeneric<>(new Decimal(inputConvertFromDouble[0]), new Decimal(inputConvertToDouble[0]));
+                WGSResults = ConvertCoordinates.DECtoWGS(DECCoordinates);
+                break;
+            case 33 :
+                DECCoordinates = new CoordinateGeneric<>(new Decimal(inputConvertFromDouble[0]), new Decimal(inputConvertToDouble[0]));
+                DECResults = ConvertCoordinates.DECtoDEC(DECCoordinates);
+                break;
+            default:
+        }
+
+        if (inputConvertTo == 1) {
+            System.out.println("new X: " + RDHResults.getxCoordinate().getCoordinate());
+            System.out.println("new Y: " + RDHResults.getyCoordinate().getCoordinate());
+        }
+        else if (inputConvertTo == 2) {
+            System.out.println("new X: " + WGSResults.getxCoordinate().toString());
+            System.out.println("new Y: " + WGSResults.getyCoordinate().toString());
+        }
+        else { 
+            System.out.println("new X: " + DECResults.getxCoordinate().getCoordinate());
+            System.out.println("new Y: " + DECResults.getyCoordinate().getCoordinate());
+        }
     }
 }
